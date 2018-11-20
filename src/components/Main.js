@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Home from './Home'
 import LoginForm from './LoginForm'
+import SignUpForm from './SignUpForm'
 
 
 // The Main component renders one of the three provided
@@ -19,6 +20,7 @@ const Main = () => (
     <Switch>
       <Route exact path='/' component={Home}/>
       <Route path='/loginform' component={LoginForm}/>
+      <Route path='/signupform' component={SignUpForm}/>
       
     </Switch>
   </main>
