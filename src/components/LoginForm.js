@@ -46,13 +46,13 @@ export default class LoginForm extends React.Component {
           <div className="container center-block" style={divStyle}>
                 <div className="row">
                   <div className="col-lg-3 col-lg-offset-3 text-center sec-1-btn">
-                    <div class="btn-group buttons">
+                    <div className="btn-group buttons">
                       <Button>Submit</Button>
                     </div>      
                   </div>
                   
                   <div className="col-lg-3 text-center sec-1-btn">
-                    <div class="btn-group buttons">
+                    <div className="btn-group buttons">
                       <Link to='/signupform'>
                         <Button>Create Account</Button>
                       </Link> 
