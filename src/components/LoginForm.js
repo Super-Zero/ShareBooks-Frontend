@@ -21,9 +21,6 @@ export default class LoginForm extends React.Component {
           <br/>
 
           <div className="container center-block" style={divStyle}>
-
-            
-
             <Form>
               <FormGroup>
                 <Label for="exampleEmail">Email</Label>
@@ -34,36 +31,23 @@ export default class LoginForm extends React.Component {
                 <Label for="examplePassword">Password</Label>
                 <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
               </FormGroup>
-
-
-              
-              
-              
             </Form>
 
-          </div>
-
-          <div className="container center-block" style={divStyle}>
-                <div className="row">
-                  <div className="col-lg-3 col-lg-offset-3 text-center sec-1-btn">
-                    <div className="btn-group buttons">
-                      <Button>Submit</Button>
-                    </div>      
-                  </div>
-                  
-                  <div className="col-lg-3 text-center sec-1-btn">
-                    <div className="btn-group buttons">
-                      <Link to='/signupform'>
-                        <Button>Create Account</Button>
-                      </Link> 
-                    </div>     
-                  </div>
-
+            <div className="container">
+              <div className="row">
+                <div className="col-sm text-center">
+                <Button className="center-block">Submit</Button>
+                </div>
+                <div className="col-sm text-center">
+                  <Link to='/signupform'>
+                    <Button className="center-block">Create Account</Button>
+                  </Link>
                 </div>
               </div>
+            </div>
 
+          </div>
         </div>
-      
     );
   }
 }

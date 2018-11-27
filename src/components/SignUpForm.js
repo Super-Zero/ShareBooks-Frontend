@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
 import {createUser} from '../API'
 
 var divStyle = {
 
  width: '500px',
 };
+
+
 
 
 
@@ -17,21 +19,6 @@ class SignupForm extends Component {
 //    constructor(props) {
 //        super(props);
 //    }
-
-
-// state={
-//     user:{
-//         first_name: '',
-//         last_name: '',
-//         email: '',
-//         password: '',
-//         phone: '',
-//         student_id: '',
-//         student_major: '',
-//         school: '',
-//         student_classification: ''
-//     }
-// }
 
 state={
     user: {}
@@ -49,16 +36,12 @@ valueChanged = (event) => {
 
 handleSubmit= (event) => {
     event.preventDefault();
-    //console.log(this.state.user);
-
-    // this.state.user.phone = Number(this.state.user.phone)
-    // this.state.user.student_id = Number(this.state.user.student_id)
-
     var data = this.state.user
-
     createUser(data)
         .then(result => {
-            //console.log(this.state.user);
+            if (result == 401){
+                alert("The email is already in user. Try a different email.");
+            }
         });
 };
 
@@ -69,32 +52,32 @@ handleSubmit= (event) => {
         <form onSubmit={this.handleSubmit}>
             <FormGroup>
                 <Label for="first_name">First Name</Label>
-                <Input onChange={this.valueChanged} type="text" name="first_name" id="first_name" placeholder="Carlos" />
+                <Input onChange={this.valueChanged} type="text" name="first_name" id="first_name" placeholder="John" />
             </FormGroup>
 
             <FormGroup>
                 <Label for="last_name">Last Name</Label>
-                <Input onChange={this.valueChanged} type="text" name="last_name" id="last_name" placeholder="Andrade" />
+                <Input onChange={this.valueChanged} type="text" name="last_name" id="last_name" placeholder="Doe" />
             </FormGroup>
 
             <FormGroup>
                 <Label for="email">Email</Label>
-                <Input onChange={this.valueChanged} type="email" name="email" id="email" placeholder="Carlos@gmail.com" />
+                <Input onChange={this.valueChanged} type="email" name="email" id="email" placeholder="jdoe@example.com" />
             </FormGroup>
 
             <FormGroup>
                 <Label for="password">Password</Label>
-                <Input onChange={this.valueChanged} type="password" name="password" id="password" placeholder="password placeholder" />
+                <Input onChange={this.valueChanged} type="password" name="password" id="password" placeholder="password" />
             </FormGroup>
 
             <FormGroup>
                 <Label for="phone">Phone</Label>
-                <Input onChange={this.valueChanged} type="text" name="phone" id="phone" placeholder="789-056-9876" />
+                <Input onChange={this.valueChanged} type="text" name="phone" id="phone" placeholder="123-456-7890" />
             </FormGroup>
 
             <FormGroup>
                 <Label for="student_id">Student ID</Label>
-                <Input onChange={this.valueChanged} type="text" name="student_id" id="student_id" placeholder="67893458" />
+                <Input onChange={this.valueChanged} type="text" name="student_id" id="student_id" placeholder="12345678" />
             </FormGroup>
 
             <FormGroup>
@@ -123,12 +106,13 @@ handleSubmit= (event) => {
                 </Input>
             </FormGroup>
 
-            <FormGroup>
-                <Button color="primary">Submit</Button>{' '}
-            </FormGroup>
+            <div className="container text-center">
+                <FormGroup>
+                    <Button color="primary">Submit</Button>{' '}
+                </FormGroup>
+            </div>
         </form>
        </div>
-
        );
    }
 }
