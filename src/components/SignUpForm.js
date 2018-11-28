@@ -40,7 +40,11 @@ handleSubmit= (event) => {
     createUser(data)
         .then(result => {
             if (result == 401){
-                alert("The email is already in user. Try a different email.");
+                alert("The email is already in use. Try a different email.");
+            }
+
+            if (result == 201){
+                alert("Your account has been created succefully.")
             }
         });
 };
