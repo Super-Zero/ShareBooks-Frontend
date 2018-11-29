@@ -1,13 +1,25 @@
 import React, { Component, PropTypes } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, withRouter } from 'reactstrap';
 import {createUser} from '../API'
+import { Redirect, Route, Link } from "react-router-dom";
+import Alert from 'react-s-alert';
+
+import Main from './Main'
+
+
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+//import 'react-s-alert/dist/s-alert-css-effects/genie.css';
 
 var divStyle = {
 
  width: '500px',
 };
 
+var alertStyle = {
 
+    width: '250px',
+};
 
 
 
@@ -16,13 +28,17 @@ class SignupForm extends Component {
    //     className: PropTypes.string,
    // };
 
-//    constructor(props) {
-//        super(props);
-//    }
+   constructor(props) {
+       super(props);
+       this.state={
+            user: {},
+            successAccount: false,
+        }
+   }
 
-state={
-    user: {}
-}
+
+
+//let successAccount = false;
 
 valueChanged = (event) => {
     const {name, value} = event.target;
@@ -35,24 +51,73 @@ valueChanged = (event) => {
 };
 
 handleSubmit= (event) => {
+    const that = this;
     event.preventDefault();
     var data = this.state.user
     createUser(data)
         .then(result => {
             if (result == 401){
-                alert("The email is already in use. Try a different email.");
+                //alert("The email is already in use. Try a different email.");
+                Alert.error('The email is already in use. Try a different email.', {
+                    position: 'top',
+                    effect: 'slide',
+                    onShow: function () {
+                        console.log('aye!')
+                    },
+                    beep: false,
+                    timeout: 'none',
+                    offset: 100
+                });
             }
 
             if (result == 201){
-                alert("Your account has been created succefully.")
+                //alert("Your account has been created succefully.")
+                //setTimeout(function() { alert("Your account has been created succefully"); }, "3000");
+                
+                Alert.success('Your account has been created succefully', {
+                    position: 'top',
+                    effect: 'slide',
+                    onShow: function () {
+                        console.log('aye!')
+                    },
+                    onClose: function () {
+                        //console.log('onClose Fired!');
+                        //this.props.history.push('/loginform');
+                        //<Redirect to="/loginform"/>;
+                        //redirectToLoginPage();
+                       that.setState({successAccount: true})
+                    },
+                    beep: false,
+                    timeout: 3000,
+                    offset: 100
+                });
+
+                
+                
             }
         });
 };
 
 
    render() {
+
+        if (this.state.successAccount){
+            return <Redirect to="/loginform"/>
+        }
+    
        return (
        <div  className="container center-block" style={divStyle}>
+
+        <div className="container text-center" style={alertStyle}>
+            <span className="container text-center" style={alertStyle}>
+                {this.props.children}
+            </span>
+            <Alert stack={{limit: 3}} />
+        </div>
+
+
+        
+
         <form onSubmit={this.handleSubmit}>
             <FormGroup>
                 <Label for="first_name">First Name</Label>
@@ -115,8 +180,14 @@ handleSubmit= (event) => {
                     <Button color="primary">Submit</Button>{' '}
                 </FormGroup>
             </div>
+
+            
+            
         </form>
        </div>
+
+        
+
        );
    }
 }
