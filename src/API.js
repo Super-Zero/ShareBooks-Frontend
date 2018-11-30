@@ -1,4 +1,4 @@
-const API_URL ="http://localhost:8000/api/signup";
+const API_URL ="/api/signup";
 
 //var data2 = {first_name: 'example'};
 
@@ -7,8 +7,8 @@ export function createUser(data){
     return fetch(API_URL, {
         method: 'POST',
         // mode: "no-cors",
-        mode: "cors", 
-        credentials: "include",
+        //mode: "cors", 
+        //credentials: "include",
         body: JSON.stringify(data),
         headers:{
             'Content-Type': 'application/json'  
