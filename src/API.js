@@ -1,4 +1,4 @@
-const API_URL ="http://localhost:8000/api/signup";
+const API_URL ="/api/signup";
 
 //var data2 = {first_name: 'example'};
 
@@ -7,8 +7,8 @@ export function createUser(data){
     return fetch(API_URL, {
         method: 'POST',
         // mode: "no-cors",
-        mode: "cors", 
-        credentials: "include",
+        //mode: "cors", 
+        //credentials: "include",
         body: JSON.stringify(data),
         headers:{
             'Content-Type': 'application/json'  
@@ -21,4 +21,36 @@ export function createUser(data){
         .catch((error) => {
             console.error(error);
         });
+}
+
+// API for Authentification
+export function login(info){
+    return fetch("/api/login", {
+        method: 'POST',
+        body: JSON.stringify(info),
+        headers:{
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch((error) => {
+        console.error(error);
+    })
+}
+
+// API to get user's info
+export function profile(info){
+    return fetch("/api/profile", {
+        method: 'GET',
+        body: JSON.stringify(info),
+        headers:{
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch((error) => {
+        console.error(error);
+    })
 }

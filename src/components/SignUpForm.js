@@ -69,6 +69,7 @@ handleSubmit= (event) => {
                     offset: 100
                 });
             }
+               
 
             if (result == 201){
                 //alert("Your account has been created succefully.")
