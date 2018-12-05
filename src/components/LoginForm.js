@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
-import {login} from '../API'
+import {login, profile} from '../API'
 
 
 var divStyle = {
@@ -17,9 +17,13 @@ export default class LoginForm extends React.Component {
     super(props);
     this.state={
          user: {},
-         successAccount: false,
+         successAccount: false, 
      }
+
+     let user_id = '';
 }
+
+
   
 valueChanged = (event) => {
   const {name, value} = event.target;
@@ -36,15 +40,27 @@ valueChanged = (event) => {
     event.preventDefault();
     const that = this;
 
-    console.log(this.state.user)
+    //console.log(this.state.user)
 
       login(this.state.user)
-      .then(result => {
-      //   // if (result.status == 201){
-      //   //     that.setState({successAccount: true})
-      //   // }
-
-        console.log(result);
+      .then(res => {
+        // if (res.user_id != null){
+        //     that.setState({successAccount: true})
+        //     console.log("User exits");
+        // }
+        // else{
+        //   console.log("User does not exits");
+        // }
+        //console.log(res);
+      //   //console.log(result);
+      //   //let user_id = result.user_id;
+      //   // console.log(result.user_id);
+      //   // profile(result)
+      //   // .then(res =>{
+          
+      //   //   console.log(res);
+      //   // })
+      //   console.log(res);
 
       })
 
@@ -73,12 +89,12 @@ valueChanged = (event) => {
             <Form>
               <FormGroup>
                 <Label for="exampleEmail">Email</Label>
-                <Input type="email" onChange={this.valueChanged} name="email" id="exampleEmail" placeholder="with a placeholder" />
+                <Input type="email" onChange={this.valueChanged} name="email" id="email" placeholder="name@example.com" />
               </FormGroup>
 
               <FormGroup>
                 <Label for="examplePassword">Password</Label>
-                <Input type="password" onChange={this.valueChanged} name="password" id="examplePassword" placeholder="password placeholder" />
+                <Input type="password" onChange={this.valueChanged} name="password" id="password" placeholder="password" />
               </FormGroup>
             </Form>
 

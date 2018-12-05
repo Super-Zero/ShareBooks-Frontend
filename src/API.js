@@ -17,7 +17,10 @@ export function createUser(data){
         
         })
         .then(response => response.status)
-        // .then(response => console.log('Success:', JSON.stringify(response)))
+        //.then(response => console.log('Success:', JSON.stringify(response)))
+        .then(response => {
+            this.props.user_id = response.json();
+        })
         .catch((error) => {
             console.error(error);
         });
@@ -42,14 +45,13 @@ export function login(info){
 // API to get user's info
 export function profile(info){
     return fetch("/api/profile", {
-        method: 'GET',
+        method: 'POST',
         body: JSON.stringify(info),
         headers:{
             'Content-Type': 'application/json'
         },
     })
     .then(response => response.json())
-    .then(response => console.log(response))
     .catch((error) => {
         console.error(error);
     })

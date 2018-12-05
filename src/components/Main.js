@@ -3,6 +3,13 @@ import { Switch, Route } from 'react-router-dom'
 import Home from './Home'
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
+import ViewBooks from './ViewBooks';
+import ProfilePage from './ProfilePage'
+import UploadBook from './UploadBook';
+import UploadBookForm from './UploadBookForm'
+import NavBar from './NavBar'
+import ExchangeBook from './ExchangeBook'
+import  UpdateProfile from './UpdateProfile'
 
 
 // The Main component renders one of the three provided
@@ -21,6 +28,13 @@ const Main = () => (
       <Route exact path='/' component={Home}/>
       <Route path='/loginform' component={LoginForm}/>
       <Route path='/signupform' component={SignUpForm}/>
+      <Route path='/profilepage' component={ProfilePage}/>
+      <Route path='/viewbooks' component={ViewBooks}/>
+      <Route path='/uploadbook' component={UploadBook}/>
+      <Route path='/uploadbookform' component={UploadBookForm}/>
+      <Route path='/exchangebook' component={ExchangeBook}/>
+      <Route path='/updateprofile' component={UpdateProfile}/>
+
       
     </Switch>
   </main>
