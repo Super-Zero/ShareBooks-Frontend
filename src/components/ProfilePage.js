@@ -25,9 +25,14 @@ import {profile} from '../API'
                 classification:''
             },
             ProfileLoaded:false,
+            isDisable: true,
         }
      }
 
+     updateProfile=(event)=>{
+        event.preventDefault();
+        this.setState({isDisable: false})
+     };
 
      setUserInfo(data){
          this.setState({
@@ -42,12 +47,12 @@ import {profile} from '../API'
                 classification: data.student_classification
              }
          });
-     }
+     };
 
      loadProfile(){
         profile(this.props.location.state.uid)
         .then(res =>{
-            console.log(res);
+            // console.log(res);
             this.setUserInfo(res);
         })
      }
@@ -60,26 +65,82 @@ import {profile} from '../API'
 
     return (  
         
-        <div>
         <div className="container">
 
-         <div className= "jumbotron">
-            <h1 className="display-4">{`Hello, ${this.state.user.first_name}`}</h1>
-             <p className="lead">Welcome to your profile!</p>
-             <hr className="my-4"/>
-             <p>{`First Name: ${this.state.user.first_name}`}</p>
-             <p>{`LastName: ${this.state.user.last_name}`}</p>
-             <p>{`Email: ${this.state.user.email}`}</p>
-             <p>{`Phone: ${this.state.user.phone}`}</p>
-             <p>{`Student ID: ${this.state.user.student_id}`}</p>
-             <p>{`School: ${this.state.user.school}`}</p>
-             <p>{`Major: ${this.state.user.major}`}</p>
-             <p>{`Classification: ${this.state.user.classification}`}</p>
-             
-             <Link  to='/viewbooks'  className="btn btn-primary btn-lg"  role="button">My Library</Link> 
-         </div>
+            <div className="jumbotron text-center">
+                    <h1 className="display-4">{`Welcome to your profile, ${this.state.user.first_name}`}</h1>
+            </div>
+
+            <div className= "container">
+
+                <form>
+                    <FormGroup>
+                        <Label for="first_name">First Name</Label>
+                        <Input onChange={this.valueChanged} type="text" name="first_name" id="first_name" defaultValue={this.state.user.first_name} disabled={this.state.isDisable}/>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label for="last_name">Last Name</Label>
+                        <Input onChange={this.valueChanged} type="text" name="last_name" id="last_name" defaultValue={this.state.user.last_name} disabled={this.state.isDisable}/>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label for="email">Email</Label>
+                        <Input onChange={this.valueChanged} type="email" name="email" id="email" defaultValue={this.state.user.email} disabled={this.state.isDisable}/>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label for="phone">Phone</Label>
+                        <Input onChange={this.valueChanged} type="text" name="phone" id="phone" defaultValue={this.state.user.phone} disabled={this.state.isDisable}/>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label for="student_id">Student ID</Label>
+                        <Input onChange={this.valueChanged} type="text" name="student_id" id="student_id" defaultValue={this.state.user.student_id} disabled={this.state.isDisable}/>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label for="student_major">Major</Label>
+                        <Input onChange={this.valueChanged} type="text" name="student_major" id="student_major" defaultValue={this.state.user.major} disabled={this.state.isDisable}/>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label for="school">Select School</Label>
+                        <Input onChange={this.valueChanged} type="select" name="school" id="school" defaultValue={this.state.user.school} disabled={this.state.isDisable}>
+                            <option>York College</option>
+                            <option>Hunter College</option>
+                            <option>City College</option>
+                            <option>Brooklyn College</option>
+                            <option>Queens College</option>
+                        </Input>
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label for="student_classification">Classification</Label>
+                        <Input onChange={this.valueChanged} type="select" name="student_classification" id="student_classification" defaultValue={this.state.user.student_classification} disabled={this.state.isDisable}>
+                            <option>Freshmen</option>
+                            <option>Sophmore</option>
+                            <option>Junior</option>
+                            <option>Senior</option>
+                        </Input>
+                    </FormGroup>
+
+                    <br></br>
+
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-sm text-center">
+                                <Button onClick={this.updateProfile} color="primary">Update</Button>
+                            </div>
+
+                            <div className="col-sm text-center">
+                                <Button  color="primary">Submit</Button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div> 
-       </div> 
     );
     
     }

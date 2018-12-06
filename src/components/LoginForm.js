@@ -23,8 +23,6 @@ export default class LoginForm extends React.Component {
      }
 }
 
-
-  
 valueChanged = (event) => {
   const {name, value} = event.target;
   this.setState((prevState) => ({
@@ -40,7 +38,6 @@ valueChanged = (event) => {
     const that = this;
       login(that.state.user)
       .then(res => {
-        //console.log(res.user_id);
         if (res.user_id != 0){
             that.setState({id: res.user_id})           
             that.setState({successAccount: true})
@@ -53,8 +50,7 @@ valueChanged = (event) => {
   
   
   render() {
-    //const { id } = this.state
-    //console.log(this.state.successAccount);
+
     if (this.state.successAccount){
       console.log(supervariable);
       return <Redirect to={{
@@ -65,10 +61,10 @@ valueChanged = (event) => {
 
     return (
 
-        <div className="container">
+        <div className="container jumbotron">
 
           <div className="container text-center">
-              <h3>Login into your account</h3>
+              <h1 className="display-4">Sign in to your account</h1>
           </div>
 
           <br/>
@@ -89,11 +85,11 @@ valueChanged = (event) => {
             <div className="container">
               <div className="row">
                 <div className="col-sm text-center">
-                <Button onClick={this.handleLogin} className="center-block">Submit</Button>
+                <Button onClick={this.handleLogin} className="center-block bg-primary">Submit</Button>
                 </div>
                 <div className="col-sm text-center">
                   <Link to='/signupform'>
-                    <Button className="center-block">Create Account</Button>
+                    <Button className="center-block bg-primary">Create Account</Button>
                   </Link>
                 </div>
               </div>

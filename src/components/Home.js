@@ -2,26 +2,37 @@ import React, { PropTypes } from 'react';
 import NavBar from './NavBar';
 import NavBarAfterLogIn from './NavBarAfterLogIn';
 
-const Home = ({ className }) => {
-    return (
-    <div>
-         {/* <NavBar/> */}
-        <div className="jumbotron">
-		<h1 className="display-4">Hello, Welcome to ShareBooks!</h1>
-		 <p className="lead">You can share your and get another books free of cost using this application.</p>
-		 <hr className="my-4"/>
-		 
-		 
-		 <a className="btn btn-primary btn-lg" href="/signupform" role="button">Sign Up For An Account Here !!</a>
-         <p>Already have an Acccount ? Then Log In here</p>
-		 <a className="btn btn-primary btn-lg" href="/loginform" role="button">Log IN!!</a>
 
-        </div> 
-    </div>	
+const font={
+    fontWeight: 'bold'
+}
+
+export default class ProfilePage extends React.Component{
+    render(){
+        return (
+            <div>
+                <div className="jumbotron text-center">
+                    <h1 className="display-4">Welcome to ShareBooks!</h1>
+                    <img src={require('../images/home.png')} class="img-fluid" alt="Responsive image"></img>
+                    <p className="lead" style={font}>You can exchange books with other students from the same college.</p>
+                    <hr className="my-4"/>
+                 
+                 
+                    <div className="container text-center">
+                        <div className="row text-center">
+                            <div className="col-md text-center">
+                                <a className="btn btn-primary btn-lg" href="/loginform" role="button">Login</a>
+                            </div>
         
-    );
-};
+                            <div className="col-md text-center">
+                                <a className="btn btn-primary btn-lg" href="/signupform" role="button">Sign Up</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>	
+            );
+    }
+}
 
 
-
-export default Home;
