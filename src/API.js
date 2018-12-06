@@ -3,8 +3,8 @@ const API_URL ="/api/signup";
 //var data2 = {first_name: 'example'};
 
 export function createUser(data){
-    //console.log(data);
-    return fetch(API_URL, {
+    console.log(data);
+    return fetch('/api/signup', {
         method: 'POST',
         // mode: "no-cors",
         //mode: "cors", 
@@ -13,14 +13,8 @@ export function createUser(data){
         headers:{
             'Content-Type': 'application/json'  
         },
-        // redirect: "follow",
-        
         })
         .then(response => response.status)
-        //.then(response => console.log('Success:', JSON.stringify(response)))
-        .then(response => {
-            this.props.user_id = response.json();
-        })
         .catch((error) => {
             console.error(error);
         });
@@ -63,8 +57,48 @@ export function profile(info){
         //console.log(response.json());
         return response.json();
     })
-    //.then(response => console.log(response))
     .catch((error) => {
         console.error(error);
     })
 }
+
+// API to upload books
+export function uploadBook(data){
+    //console.log(data);
+    return fetch('/api/uploadbooks', {
+        method: 'POST',
+        // mode: "no-cors",
+        //mode: "cors",
+        //credentials: "include",
+        body: JSON.stringify(data),
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        })
+        .then(response => response.status)
+        //.then(response => console.log('Success:', JSON.stringify(response)))
+        .catch((error) => {
+            console.error(error);
+        });
+ }
+
+
+ // API to get all books from user's Library
+ export function getBooks(data){
+    //console.log(data);
+    return fetch('/api/mylibrary', {
+        method: 'POST',
+        // mode: "no-cors",
+        //mode: "cors",
+        //credentials: "include",
+        body: JSON.stringify(data),
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        })
+        .then(response => response.status)
+        //.then(response => console.log('Success:', JSON.stringify(response)))
+        .catch((error) => {
+            console.error(error);
+        });
+ }

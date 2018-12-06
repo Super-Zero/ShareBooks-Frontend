@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import { Link } from 'react-router-dom'
+import { Link, BrowserRouterProps } from 'react-router-dom'
 import Main from './Main';
 import NavBarAfterLogIn from './NavBarAfterLogIn';
 import {profile} from '../API'
@@ -50,6 +50,7 @@ import {profile} from '../API'
      };
 
      loadProfile(){
+        this.setState({user_id: this.props.location.state.uid});
         profile(this.props.location.state.uid)
         .then(res =>{
             // console.log(res);
@@ -136,6 +137,16 @@ import {profile} from '../API'
                             <div className="col-sm text-center">
                                 <Button  color="primary">Submit</Button>
                             </div>
+
+                            <div className="col-sm text-center">
+                                <Link to={{
+                                    pathname: '/uploadbook',
+                                    state:{uid: this.state.user_id}
+                                }}>
+                                    <Button className="center-block bg-primary">Upload Books</Button>
+                                 </Link>
+                            </div>
+
                         </div>
                     </div>
                 </form>

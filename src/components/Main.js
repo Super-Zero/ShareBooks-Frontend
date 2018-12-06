@@ -31,7 +31,7 @@ const Main = () => (
       <Route path='/profilepage' component={ProfilePage}/>
       <Route path='/viewbooks' component={ViewBooks}/>
       <Route path='/uploadbook' component={UploadBook}/>
-      <Route path='/uploadbookform' component={UploadBookForm}/>
+      {/* <Route path='/uploadbookform' component={UploadBookForm}/> */}
       <Route path='/exchangebook' component={ExchangeBook}/>
       <Route path='/updateprofile' component={UpdateProfile}/>
 

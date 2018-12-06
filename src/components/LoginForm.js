@@ -2,22 +2,27 @@ import React, { Component } from 'react'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Link, Redirect} from 'react-router-dom';
 import {login, profile} from '../API';
+import Alert from 'react-s-alert';
 
-
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 
 var divStyle = {
   width: '500px',
 };
 
+var alertStyle = {
 
-let supervariable = 0;
+  width: '250px',
+};
+
 
 export default class LoginForm extends React.Component {
 
   constructor(props) {
     super(props);
     this.state={
-        id: '',
+        id: 0,
          user: {},
          successAccount: false,
      }
@@ -39,11 +44,32 @@ valueChanged = (event) => {
       login(that.state.user)
       .then(res => {
         if (res.user_id != 0){
-            that.setState({id: res.user_id})           
-            that.setState({successAccount: true})
+          Alert.success('You are successfully authenticated', {
+            position: 'top',
+            effect: 'slide',
+            onShow: function () {
+                console.log('aye!')
+            },
+            onClose: function () {
+              that.setState({id: res.user_id})           
+              that.setState({successAccount: true})
+            },
+            beep: false,
+            timeout: 2000,
+            offset: 100
+          })   
         }
         else{
-          console.log("User does not exits");
+          Alert.error('Incorrect email or password', {
+            position: 'top',
+            effect: 'slide',
+            onShow: function () {
+                console.log('aye!')
+            },
+            beep: false,
+            timeout: 'none',
+            offset: 100
+        });
         }
       })
   };
@@ -52,7 +78,6 @@ valueChanged = (event) => {
   render() {
 
     if (this.state.successAccount){
-      console.log(supervariable);
       return <Redirect to={{
            pathname: '/profilepage',
            state:{uid: this.state.id}
@@ -62,6 +87,13 @@ valueChanged = (event) => {
     return (
 
         <div className="container jumbotron">
+
+          <div className="container text-center" style={alertStyle}>
+                <span className="container text-center" style={alertStyle}>
+                    {this.props.children}
+                </span>
+                <Alert stack={{limit: 3}} />
+            </div>
 
           <div className="container text-center">
               <h1 className="display-4">Sign in to your account</h1>
