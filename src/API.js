@@ -17,7 +17,10 @@ export function createUser(data){
         
         })
         .then(response => response.status)
-        // .then(response => console.log('Success:', JSON.stringify(response)))
+        //.then(response => console.log('Success:', JSON.stringify(response)))
+        .then(response => {
+            this.props.user_id = response.json();
+        })
         .catch((error) => {
             console.error(error);
         });
@@ -32,8 +35,14 @@ export function login(info){
             'Content-Type': 'application/json'
         },
     })
-    .then(response => response.json())
-    .then(response => console.log(response))
+    .then(response => {
+        if(response.status === 200) {
+          return response.json();
+        }
+        else{
+            return {user_id: 0};
+        }
+      })
     .catch((error) => {
         console.error(error);
     })
@@ -41,15 +50,20 @@ export function login(info){
 
 // API to get user's info
 export function profile(info){
+
+    console.log(info);
     return fetch("/api/profile", {
-        method: 'GET',
-        body: JSON.stringify(info),
+        method: 'POST',
+        body: JSON.stringify({user_id: info}),
         headers:{
             'Content-Type': 'application/json'
         },
     })
-    .then(response => response.json())
-    .then(response => console.log(response))
+    .then(response => {
+        //console.log(response.json());
+        return response.json();
+    })
+    //.then(response => console.log(response))
     .catch((error) => {
         console.error(error);
     })
