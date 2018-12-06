@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import { Link, Redirect } from 'react-router-dom';
-import {login, profile} from '../API'
+import { Link, Redirect} from 'react-router-dom';
+import {login, profile} from '../API';
+
 
 
 var divStyle = {
@@ -9,18 +10,17 @@ var divStyle = {
 };
 
 
-
+let supervariable = 0;
 
 export default class LoginForm extends React.Component {
 
   constructor(props) {
     super(props);
     this.state={
+        id: '',
          user: {},
-         successAccount: false, 
+         successAccount: false,
      }
-
-     let user_id = '';
 }
 
 
@@ -35,45 +35,33 @@ valueChanged = (event) => {
   }));
 };
 
-
   handleLogin = (event) => {
     event.preventDefault();
     const that = this;
-
-    //console.log(this.state.user)
-
-      login(this.state.user)
+      login(that.state.user)
       .then(res => {
-        // if (res.user_id != null){
-        //     that.setState({successAccount: true})
-        //     console.log("User exits");
-        // }
-        // else{
-        //   console.log("User does not exits");
-        // }
-        //console.log(res);
-      //   //console.log(result);
-      //   //let user_id = result.user_id;
-      //   // console.log(result.user_id);
-      //   // profile(result)
-      //   // .then(res =>{
-          
-      //   //   console.log(res);
-      //   // })
-      //   console.log(res);
-
+        //console.log(res.user_id);
+        if (res.user_id != 0){
+            that.setState({id: res.user_id})           
+            that.setState({successAccount: true})
+        }
+        else{
+          console.log("User does not exits");
+        }
       })
-
   };
   
   
-  
-  
   render() {
-
-    // if (this.state.successAccount){
-    //   return <Redirect to="/profile"/>
-    // }
+    //const { id } = this.state
+    //console.log(this.state.successAccount);
+    if (this.state.successAccount){
+      console.log(supervariable);
+      return <Redirect to={{
+           pathname: '/profilepage',
+           state:{uid: this.state.id}
+          }}/>
+    }
 
     return (
 

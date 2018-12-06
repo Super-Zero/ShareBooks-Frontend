@@ -35,8 +35,14 @@ export function login(info){
             'Content-Type': 'application/json'
         },
     })
-    .then(response => response.json())
-    .then(response => console.log(response))
+    .then(response => {
+        if(response.status === 200) {
+          return response.json();
+        }
+        else{
+            return {user_id: 0};
+        }
+      })
     .catch((error) => {
         console.error(error);
     })
@@ -44,14 +50,20 @@ export function login(info){
 
 // API to get user's info
 export function profile(info){
+
+    console.log(info);
     return fetch("/api/profile", {
         method: 'POST',
-        body: JSON.stringify(info),
+        body: JSON.stringify({user_id: info}),
         headers:{
             'Content-Type': 'application/json'
         },
     })
-    .then(response => response.json())
+    .then(response => {
+        //console.log(response.json());
+        return response.json();
+    })
+    //.then(response => console.log(response))
     .catch((error) => {
         console.error(error);
     })
