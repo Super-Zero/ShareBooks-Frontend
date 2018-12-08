@@ -84,9 +84,30 @@ export function uploadBook(data){
 
 
  // API to get all books from user's Library
- export function getBooks(data){
+ export async function mylibrary(data){
     //console.log(data);
     return fetch('/api/mylibrary', {
+        method: 'POST',
+        // mode: "no-cors",
+        //mode: "cors",
+        //credentials: "include",
+        body: JSON.stringify(data),
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        })
+        .then(response => response.json())
+        //.then(response => console.log('Success:', JSON.stringify(response)))
+        .catch((error) => {
+            console.error(error);
+        });
+ }
+
+
+ // API to interested books
+export function interestedBooks(data){
+    //console.log(data);
+    return fetch('/api/interestedbooks', {
         method: 'POST',
         // mode: "no-cors",
         //mode: "cors",

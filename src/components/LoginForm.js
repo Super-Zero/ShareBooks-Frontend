@@ -79,7 +79,7 @@ valueChanged = (event) => {
 
     if (this.state.successAccount){
       return <Redirect to={{
-           pathname: '/profilepage',
+           pathname: '/profilepage/'+ this.state.id,
            state:{uid: this.state.id}
           }}/>
     }

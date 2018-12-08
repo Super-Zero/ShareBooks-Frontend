@@ -11,9 +11,10 @@ import {profile} from '../API'
  export default class ProfilePage extends React.Component{
 
     constructor(props) {
+        console.log('---id', props.match.params.id)
         super(props);
         this.state={
-            user_id: null,
+            user_id: props.match.params.id,
             user: {
                 first_name: '',
                 last_name:'',
@@ -50,7 +51,9 @@ import {profile} from '../API'
      };
 
      loadProfile(){
-        this.setState({user_id: this.props.location.state.uid});
+         const that = this;
+        that.setState({user_id: this.props.location.state.uid});
+        console.log(`Profile user id: ${that.state.user_id}`);
         profile(this.props.location.state.uid)
         .then(res =>{
             // console.log(res);
@@ -144,6 +147,25 @@ import {profile} from '../API'
                                     state:{uid: this.state.user_id}
                                 }}>
                                     <Button className="center-block bg-primary">Upload Books</Button>
+                                 </Link>
+                            </div>
+
+                            <div className="col-sm text-center">
+                                <Link to={{
+                                    pathname: '/interestedbooks/'+ this.state.user_id,
+                                    state:{uid: this.state.user_id}
+                                }}>
+                                    <Button className="center-block bg-primary">Interested Books</Button>
+                                 </Link>
+                            </div>
+
+
+                            <div className="col-sm text-center">
+                                <Link to={{
+                                    pathname: '/viewbooks/'+ this.state.user_id,
+                                    state:{uid: this.state.user_id}
+                                }}>
+                                    <Button className="center-block bg-primary">My Library</Button>
                                  </Link>
                             </div>
 
