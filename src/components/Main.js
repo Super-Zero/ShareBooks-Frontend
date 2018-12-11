@@ -10,6 +10,7 @@ import UploadBookForm from './UploadBookForm'
 import NavBar from './NavBar'
 import ExchangeBook from './ExchangeBook'
 import  UpdateProfile from './UpdateProfile'
+import InterestedBooks from './InterestedBooks'
 
 
 // The Main component renders one of the three provided
@@ -28,10 +29,11 @@ const Main = () => (
       <Route exact path='/' component={Home}/>
       <Route path='/loginform' component={LoginForm}/>
       <Route path='/signupform' component={SignUpForm}/>
-      <Route path='/profilepage' component={ProfilePage}/>
-      <Route path='/viewbooks' component={ViewBooks}/>
+      <Route path='/profilepage/:id' component={ProfilePage}/>
+      <Route path='/viewbooks/:id' component={ViewBooks}/>
       <Route path='/uploadbook' component={UploadBook}/>
-      <Route path='/uploadbookform' component={UploadBookForm}/>
+      <Route path='/interestedbooks/:id' component={InterestedBooks}/>
+      {/* <Route path='/uploadbookform' component={UploadBookForm}/> */}
       <Route path='/exchangebook' component={ExchangeBook}/>
       <Route path='/updateprofile' component={UpdateProfile}/>
 

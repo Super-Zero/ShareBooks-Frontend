@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, BrowserRouterProps } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, FormText, withRouter } from 'reactstrap';
-import {uploadBook} from '../API'
+import {interestedBooks} from '../API'
 
 
 
@@ -13,18 +13,19 @@ var divStyle = {
 
 
 
-export default class UploadBook extends React.Component{
+export default class InterestedBooks extends React.Component{
 
 constructor(props){
     super(props);
     this.state={
+            user_id: props.match.params.id,
             book: {
-            title:'',
-            description:'',
-            book_isbn: '',
-            type:'',
-            condition: '',
-            user_id: '',
+            // title:'',
+            // description:'',
+            // book_isbn: '',
+            // type:'',
+            // condition: '',
+            
             },
             successUpload:false,
         }
@@ -54,16 +55,16 @@ constructor(props){
             //     user_id: this.props.location.state.uid
             // }})
             var data = this.state.book;
-            data.user_id = this.props.location.state.uid.toString();;
+            data.user_id = this.state.user_id.toString();;
             console.log(data);
-              uploadBook(data)
+              interestedBooks(data)
                 .then(result => {
                     if (result == 401){
-                        alert("The book already exist in your library.");
+                        alert("The book already exist.");
                     }
         
                     if (result == 201){
-                        alert("You have successfully uploaded your book.")
+                        alert("You have successfully uploaded.")
                     }
                 });
         };

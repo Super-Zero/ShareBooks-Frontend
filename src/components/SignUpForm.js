@@ -109,7 +109,7 @@ handleSubmit= (event) => {
             <form onSubmit={this.handleSubmit}>
                 <FormGroup>
                     <Label for="first_name">First Name</Label>
-                    <Input onChange={this.valueChanged} type="text" name="first_name" id="first_name" placeholder="John" readOnly/>
+                    <Input onChange={this.valueChanged} type="text" name="first_name" id="first_name" placeholder="John"/>
                 </FormGroup>
 
                 <FormGroup>

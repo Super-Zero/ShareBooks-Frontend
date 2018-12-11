@@ -16,7 +16,11 @@ export default class ProfilePage extends React.Component{
                     <img src={require('../images/home.png')} class="img-fluid" alt="Responsive image"></img>
                     <p className="lead" style={font}>You can exchange books with other students from the same college.</p>
                     <hr className="my-4"/>
-                 
+
+                    <h1 className="display-4">How does it work?</h1>
+                    <img src={require('../images/exchange.png')} class="img-fluid" alt="Responsive image"></img>
+                    <p className="lead" style={font}>You can exchange books with other students from the same college.</p>
+                    <hr className="my-4"/>
                  
                     <div className="container text-center">
                         <div className="row text-center">
