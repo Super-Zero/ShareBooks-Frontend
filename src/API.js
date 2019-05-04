@@ -22,6 +22,7 @@ export function createUser(data){
 
 // API for Authentification
 export function login(info){
+    console.log(info);
     return fetch("/api/login", {
         method: 'POST',
         body: JSON.stringify(info),
@@ -37,6 +38,7 @@ export function login(info){
             return {user_id: 0};
         }
       })
+    //.then(response => console.log('Success:', JSON.stringify(response)))
     .catch((error) => {
         console.error(error);
     })
@@ -106,8 +108,8 @@ export function uploadBook(data){
 
  // API to interested books
 export function interestedBooks(data){
-    //console.log(data);
-    return fetch('/api/interestedbooks', {
+    console.log(data);
+    return fetch('/api/wantedbooks', {
         method: 'POST',
         // mode: "no-cors",
         //mode: "cors",
