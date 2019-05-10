@@ -14,7 +14,7 @@ import {
   Input
 } from "reactstrap";
 
-class SearchHeader extends React.Component {
+class AddBooksHeader extends React.Component {
   constructor(props) {
     super(props);
 
@@ -42,10 +42,11 @@ class SearchHeader extends React.Component {
           <Container className="d-flex align-items-center mt--7" fluid>
             <Row>
               <Col lg="7" md="10">
-                <h1 className="display-2 text-white">Search your Books</h1>
+                <h1 className="display-2 text-white">
+                  Add books to your Library
+                </h1>
                 <p className="text-white mt-0 mb-5">
-                  This is your profile page. You can see the progress you've
-                  made with your work and manage your projects or assigned tasks
+                  Here you can search for books to add to your library.
                 </p>
 
                 <div className="container">
@@ -59,7 +60,7 @@ class SearchHeader extends React.Component {
                         </InputGroupAddon>
 
                         <Input
-                          name="book_isbn"
+                          name="google_search"
                           onChange={this.props.valueChanged}
                           placeholder="Search"
                           type="text"
@@ -81,4 +82,4 @@ class SearchHeader extends React.Component {
   }
 }
 
-export default SearchHeader;
+export default AddBooksHeader;

@@ -61,7 +61,7 @@ export default class ViewBooks extends React.Component {
     //console.log(`The user id is: ${this.state.user_id}`);
     mylibrary({ user_id: this.state.user_id })
       .then(books => {
-        console.log(books);
+        console.log("My Library ------------------> ", books);
         this.setState({
           books,
           isLoading: false
@@ -76,9 +76,14 @@ export default class ViewBooks extends React.Component {
       return (
         <div className="p-2">
           <Card style={{ width: "22rem" }}>
-            <div className="float-left m-2">
+            <Container className="container-fluid align-middle mt-2">
+              <CardTitle className="">
+                <h3>{book.title}</h3>
+              </CardTitle>
+            </Container>
+            <div className="float-left ml-2 mr-2">
               <CardImg
-                className="float-left m-2"
+                className="float-left ml-2 mr-2"
                 src={book.image}
                 alt={book.title}
                 style={{ width: "45%", height: "60%" }}
@@ -86,14 +91,12 @@ export default class ViewBooks extends React.Component {
 
               <div className="p-2">
                 <CardTitle>
-                  <b>{book.title}</b>
-                </CardTitle>
-                <CardTitle>
                   <b>ISBN:</b> {book.book_isbn}
                 </CardTitle>
                 <CardTitle>
                   <b>Category:</b> {book.type}
                 </CardTitle>
+
                 <CardTitle>
                   <b>Description:</b> {book.description}
                 </CardTitle>

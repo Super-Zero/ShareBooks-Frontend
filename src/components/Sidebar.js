@@ -142,6 +142,19 @@ class Sidebar extends React.Component {
                 <Link
                   className="nav-link"
                   to={{
+                    pathname: "/addbooks",
+                    state: { uid: this.props.user_id }
+                  }}
+                >
+                  <i className="ni ni-cloud-upload-96 text-black" />
+                  Add Books
+                </Link>
+              </NavItem>
+
+              <NavItem>
+                <Link
+                  className="nav-link"
+                  to={{
                     pathname: "/search",
                     state: { uid: this.props.user_id }
                   }}

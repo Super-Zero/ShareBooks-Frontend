@@ -6,7 +6,7 @@ import SignUpForm from "./SignUpForm";
 import ViewBooks from "./ViewBooks";
 import ProfilePage from "./ProfilePage";
 import SearchPage from "./SearchPage";
-import UploadBookForm from "./UploadBookForm";
+import AddBooksToLirbary from "./AddBooksToLibrary";
 import NavBar from "./NavBar";
 import ExchangeBook from "./ExchangeBook";
 import UpdateProfile from "./UpdateProfile";
@@ -36,6 +36,7 @@ const Main = props => {
           <Route path="/signupform" component={SignUpForm} test={"test"} />
           <Route path="/profilepage/:id" component={ProfilePage} />
           <Route path="/viewbooks/:id" component={ViewBooks} />
+          <Route path="/addbooks" component={AddBooksToLirbary} />
           <Route path="/search" component={SearchPage} />
           <Route path="/interestedbooks/:id" component={InterestedBooks} />
           <Route path="/exchangebook" component={ExchangeBook} />
